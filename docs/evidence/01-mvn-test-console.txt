@@ -1,0 +1,185 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.lab:mybatis-lab >-------------------------
+[INFO] Building mybatis-lab 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The artifact org.slf4j:slf4j-log4j12:jar:1.7.36 has been relocated to org.slf4j:slf4j-reload4j:jar:1.7.36
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ mybatis-lab ---
+[INFO] Deleting D:\新建文件夹\JAVA框架技术(一)\mybatis-lab\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ mybatis-lab ---
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ mybatis-lab ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 7 source files with javac [debug target 8] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ mybatis-lab ---
+[INFO] skip non existing resourceDirectory D:\新建文件夹\JAVA框架技术(一)\mybatis-lab\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ mybatis-lab ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug target 8] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ mybatis-lab ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.lab.test.EmpDynamicSqlTest
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_name LIKE CONCAT('%', ?, '%') ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 张(String)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE dept = ? ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 研发部(String)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 2
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE dept = ? AND status = ? ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 研发部(String), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 2
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 4
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.updateDynamic - ==>  Preparing: UPDATE emp SET post = ? WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.updateDynamic - ==> Parameters: 高级Java工程师(String), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.updateDynamic - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.updateDynamic - ==>  Preparing: UPDATE emp SET post = ? WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.updateDynamic - ==> Parameters: Java工程师(String), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.updateDynamic - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - ==>  Preparing: INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - ==> Parameters: 待删丙(String), 男(String), 测试部(String), 临时岗(String), 3000(BigDecimal), 2026-09-16 15:44:12.894(Timestamp), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteBatch - ==>  Preparing: DELETE FROM emp WHERE emp_id IN ( ? )
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteBatch - ==> Parameters: 17(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteBatch - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_name LIKE CONCAT('%', ?, '%') AND dept = ? AND status = ? ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 李(String), 研发部(String), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByConditionTrim - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_name LIKE CONCAT('%', ?, '%') AND dept = ? AND status = ? ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByConditionTrim - ==> Parameters: 李(String), 研发部(String), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByConditionTrim - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insertBatch - ==>  Preparing: INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES (?, ?, ?, ?, ?, ?, ?) , (?, ?, ?, ?, ?, ?, ?)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insertBatch - ==> Parameters: 批量甲(String), 男(String), 测试部(String), 工程师(String), 6000(BigDecimal), 2026-09-16 15:44:12.92(Timestamp), 1(Integer), 批量乙(String), 女(String), 测试部(String), 工程师(String), 6500(BigDecimal), 2026-09-16 15:44:12.92(Timestamp), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insertBatch - <==    Updates: 2
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 6
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteBatch - ==>  Preparing: DELETE FROM emp WHERE emp_id IN ( ? , ? )
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteBatch - ==> Parameters: 18(Integer), 19(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteBatch - <==    Updates: 2
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - ==> Parameters: 
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByCondition - <==      Total: 4
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_name = ? ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - ==> Parameters: 张伟(String)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE dept = ? ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - ==> Parameters: 研发部(String)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - <==      Total: 2
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE status = 1 ORDER BY emp_id
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - ==> Parameters: 
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectByChoose - <==      Total: 3
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.981 s -- in com.lab.test.EmpDynamicSqlTest
+[INFO] Running com.lab.test.EmpMapperTest
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - ==>  Preparing: INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - ==> Parameters: 陈晨(String), 女(String), 研发部(String), 测试工程师(String), 9000(BigDecimal), 2026-09-16 15:44:12.946(Timestamp), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - <==    Updates: 1
+回填主键 empId = 20
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteById - ==>  Preparing: DELETE FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteById - ==> Parameters: 20(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteById - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectAll - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectAll - ==> Parameters: 
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectAll - <==      Total: 4
+Emp{empId=1, empName='张伟', gender='男', dept='研发部', post='Java工程师', salary=12000.00, hireDate=Mon Jul 01 00:00:00 CST 2024, status=1}
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+Emp{empId=3, empName='王强', gender='男', dept='市场部', post='市场专员', salary=8000.00, hireDate=Fri Mar 10 00:00:00 CST 2023, status=1}
+Emp{empId=4, empName='赵敏', gender='女', dept='人事部', post='人事专员', salary=7500.00, hireDate=Mon Jun 20 00:00:00 CST 2022, status=0}
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - ==>  Preparing: INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - ==> Parameters: 临时员工(String), 男(String), 测试部(String), 临时岗(String), 1000(BigDecimal), 2026-09-16 15:44:12.96(Timestamp), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.insert - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteById - ==>  Preparing: DELETE FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteById - ==> Parameters: 21(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.deleteById - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 21(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 0
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.update - ==>  Preparing: UPDATE emp SET emp_name = ?, gender = ?, dept = ?, post = ?, salary = ?, status = ? WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.update - ==> Parameters: 张伟(String), 男(String), 研发部(String), Java工程师(String), 13000(BigDecimal), 1(Integer), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.update - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.update - ==>  Preparing: UPDATE emp SET emp_name = ?, gender = ?, dept = ?, post = ?, salary = ?, status = ? WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.update - ==> Parameters: 张伟(String), 男(String), 研发部(String), Java工程师(String), 12000.00(BigDecimal), 1(Integer), 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.update - <==    Updates: 1
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 1(Integer)
+2026-09-16 15:44:12 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 1
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.lab.test.EmpMapperTest
+[INFO] Running com.lab.test.EmpPlusMapperTest
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - ==>  Preparing: SELECT COUNT(*) AS total FROM emp
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - ==> Parameters: 
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - <==      Total: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==> Parameters: 
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - <==      Total: 4
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE emp_id=?
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==> Parameters: 2(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - <==      Total: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.insert - ==>  Preparing: INSERT INTO emp ( emp_name, gender, dept, post, salary, hire_date, status ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.insert - ==> Parameters: MP新增(String), 男(String), 研发部(String), 后端工程师(String), 11000(BigDecimal), 2026-09-16 15:44:13.066(Timestamp), 1(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.insert - <==    Updates: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.updateById - ==>  Preparing: UPDATE emp SET emp_name=?, gender=?, dept=?, post=?, salary=?, hire_date=?, status=? WHERE emp_id=?
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.updateById - ==> Parameters: MP新增(String), 男(String), 研发部(String), 后端工程师(String), 11500(BigDecimal), 2026-09-16 15:44:13.066(Timestamp), 1(Integer), 22(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.updateById - <==    Updates: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE emp_id=?
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==> Parameters: 22(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - <==      Total: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.deleteById - ==>  Preparing: DELETE FROM emp WHERE emp_id=?
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.deleteById - ==> Parameters: 22(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.deleteById - <==    Updates: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE emp_id=?
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==> Parameters: 22(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - <==      Total: 0
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE (emp_name LIKE ? AND status = ?) ORDER BY salary DESC
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==> Parameters: %李%(String), 1(Integer)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - <==      Total: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectCount - ==>  Preparing: SELECT COUNT( * ) AS total FROM emp
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectCount - ==> Parameters: 
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectCount - <==      Total: 1
+员工总数 = 4
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE (post LIKE ? AND status = ? AND salary >= ?) ORDER BY salary DESC
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==> Parameters: %工程师%(String), 1(Integer), 9000(BigDecimal)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - <==      Total: 2
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - ==>  Preparing: SELECT COUNT(*) AS total FROM emp
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - ==> Parameters: 
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - <==      Total: 1
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp ORDER BY emp_id ASC LIMIT ?
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage - ==> Parameters: 3(Long)
+2026-09-16 15:44:13 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage - <==      Total: 3
+总记录数 = 4
+总页数   = 2
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in com.lab.test.EmpPlusMapperTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.313 s
+[INFO] Finished at: 2026-09-16T15:44:13+08:00
+[INFO] ------------------------------------------------------------------------

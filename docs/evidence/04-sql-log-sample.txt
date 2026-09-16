@@ -1,0 +1,13 @@
+﻿========== 1) selectAll ==========
+2026-09-16 15:44:17 [DEBUG] com.lab.mapper.EmpMapper.selectAll - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp
+2026-09-16 15:44:17 [DEBUG] com.lab.mapper.EmpMapper.selectAll - ==> Parameters: 
+2026-09-16 15:44:17 [DEBUG] com.lab.mapper.EmpMapper.selectAll - <==      Total: 4
+Emp{empId=1, empName='张伟', gender='男', dept='研发部', post='Java工程师', salary=12000.00, hireDate=Mon Jul 01 00:00:00 CST 2024, status=1}
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+Emp{empId=3, empName='王强', gender='男', dept='市场部', post='市场专员', salary=8000.00, hireDate=Fri Mar 10 00:00:00 CST 2023, status=1}
+Emp{empId=4, empName='赵敏', gender='女', dept='人事部', post='人事专员', salary=7500.00, hireDate=Mon Jun 20 00:00:00 CST 2022, status=0}
+========== 2) selectById(1) ==========
+2026-09-16 15:44:17 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp WHERE emp_id = ?
+2026-09-16 15:44:17 [DEBUG] com.lab.mapper.EmpMapper.selectById - ==> Parameters: 1(Integer)
+2026-09-16 15:44:17 [DEBUG] com.lab.mapper.EmpMapper.selectById - <==      Total: 1
+Emp{empId=1, empName='张伟', gender='男', dept='研发部', post='Java工程师', salary=12000.00, hireDate=Mon Jul 01 00:00:00 CST 2024, status=1}

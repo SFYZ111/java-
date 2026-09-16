@@ -1,0 +1,24 @@
+﻿
+########## 故障 1：Invalid bound statement (not found) ##########
+[说明] 按指导书步骤 2.4 用 new SqlSessionFactoryBuilder() 构建工厂，
+       然后在步骤 4.3 调用 EmpPlusMapper 继承而来的 selectList()。
+[现象] 抛出异常：org.apache.ibatis.binding.BindingException
+[信息] Invalid bound statement (not found): com.lab.mapper.EmpPlusMapper.selectList
+[原因] 原生 SqlSessionFactoryBuilder 不会走 MyBatis-Plus 的
+       MybatisMapperRegistry / MybatisMapperAnnotationBuilder，
+       BaseMapper 的通用方法（selectList 等）没有被注入到 MappedStatement，
+       所以按 namespace+id 找不到对应语句。
+[解决] 改用 new MybatisSqlSessionFactoryBuilder().build(in)，见 MyBatisUtil。
+
+########## 故障 2：分页失效，返回全量数据 ##########
+[说明] 直接使用 MyBatisUtil.buildByPlainBuilder() 得到的 Configuration
+       （不含 PaginationInnerInterceptor）执行分页查询。
+2026-09-16 15:44:16 [DEBUG] com.lab.mapper.EmpMapper.selectAll - ==>  Preparing: SELECT emp_id, emp_name, gender, dept, post, salary, hire_date, status FROM emp
+2026-09-16 15:44:16 [DEBUG] com.lab.mapper.EmpMapper.selectAll - ==> Parameters: 
+2026-09-16 15:44:16 [DEBUG] com.lab.mapper.EmpMapper.selectAll - <==      Total: 4
+[现象] 未注册插件时查询到的行数 = 4（无 LIMIT 限制，属于全量返回）
+[对照] 注册 PaginationInnerInterceptor 后，
+       selectPage(new Page<>(1,3)) 只返回 3 条且 total 正确，见 EmpPlusMapperTest#testSelectPage。
+[解决] 在 SqlSessionFactory 构建后调用
+       configuration.addInterceptor(new MybatisPlusInterceptor(){...})，
+       并 addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL))。

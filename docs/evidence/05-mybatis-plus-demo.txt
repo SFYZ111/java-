@@ -1,0 +1,36 @@
+﻿========== selectList(null)：查询全部 ==========
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==> Parameters: 
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - <==      Total: 4
+Emp{empId=1, empName='张伟', gender='男', dept='研发部', post='Java工程师', salary=12000.00, hireDate=Mon Jul 01 00:00:00 CST 2024, status=1}
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+Emp{empId=3, empName='王强', gender='男', dept='市场部', post='市场专员', salary=8000.00, hireDate=Fri Mar 10 00:00:00 CST 2023, status=1}
+Emp{empId=4, empName='赵敏', gender='女', dept='人事部', post='人事专员', salary=7500.00, hireDate=Mon Jun 20 00:00:00 CST 2022, status=0}
+========== selectById(2) ==========
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE emp_id=?
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - ==> Parameters: 2(Integer)
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectById - <==      Total: 1
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+========== QueryWrapper：研发部 + 薪资 >= 9000，按薪资倒序 ==========
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE (dept = ? AND salary >= ?) ORDER BY salary DESC
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==> Parameters: 研发部(String), 9000(BigDecimal)
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - <==      Total: 2
+Emp{empId=1, empName='张伟', gender='男', dept='研发部', post='Java工程师', salary=12000.00, hireDate=Mon Jul 01 00:00:00 CST 2024, status=1}
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+========== LambdaQueryWrapper：姓名含“李” ==========
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp WHERE (emp_name LIKE ? AND status = ?) ORDER BY salary DESC
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - ==> Parameters: %李%(String), 1(Integer)
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectList - <==      Total: 1
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+========== selectPage：第 1 页，每页 3 条 ==========
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - ==>  Preparing: SELECT COUNT(*) AS total FROM emp
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - ==> Parameters: 
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage_mpCount - <==      Total: 1
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage - ==>  Preparing: SELECT emp_id,emp_name,gender,dept,post,salary,hire_date,status FROM emp ORDER BY emp_id ASC LIMIT ?
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage - ==> Parameters: 3(Long)
+2026-09-16 15:44:19 [DEBUG] com.lab.mapper.EmpPlusMapper.selectPage - <==      Total: 3
+总记录数 = 4
+总页数   = 2
+Emp{empId=1, empName='张伟', gender='男', dept='研发部', post='Java工程师', salary=12000.00, hireDate=Mon Jul 01 00:00:00 CST 2024, status=1}
+Emp{empId=2, empName='李娜', gender='女', dept='研发部', post='前端工程师', salary=10000.00, hireDate=Thu Aug 15 00:00:00 CST 2024, status=1}
+Emp{empId=3, empName='王强', gender='男', dept='市场部', post='市场专员', salary=8000.00, hireDate=Fri Mar 10 00:00:00 CST 2023, status=1}
