@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    员工表映射文件（实验一 步骤 2.3 / 任务 3）
+    namespace 必须与 com.lab.mapper.EmpMapper 接口全限定名完全一致
+-->
+<mapper namespace="com.lab.mapper.EmpMapper">
+
+    <!-- ============ 自定义结果映射：解决字段名与属性名不一致 ============ -->
+    <resultMap id="empMap" type="Emp">
+        <id     property="empId"    column="emp_id"/>
+        <result property="empName"  column="emp_name"/>
+        <result property="gender"   column="gender"/>
+        <result property="dept"     column="dept"/>
+        <result property="post"     column="post"/>
+        <result property="salary"   column="salary"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="status"   column="status"/>
+    </resultMap>
+
+    <!-- 公共列片段，避免 SELECT * 与列名重复书写 -->
+    <sql id="allColumns">
+        emp_id, emp_name, gender, dept, post, salary, hire_date, status
+    </sql>
+
+    <!-- ============ 任务 2：基础 CRUD ============ -->
+
+    <select id="selectAll" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp WHERE emp_id = #{empId}
+    </select>
+
+    <!-- 新增并回填自增主键 -->
+    <insert id="insert" parameterType="Emp" useGeneratedKeys="true" keyProperty="empId">
+        INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status)
+        VALUES (#{empName}, #{gender}, #{dept}, #{post}, #{salary}, #{hireDate}, #{status})
+    </insert>
+
+    <update id="update" parameterType="Emp">
+        UPDATE emp
+        SET emp_name = #{empName},
+            gender   = #{gender},
+            dept     = #{dept},
+            post     = #{post},
+            salary   = #{salary},
+            status   = #{status}
+        WHERE emp_id = #{empId}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM emp WHERE emp_id = #{empId}
+    </delete>
+
+    <!-- ============ 任务 3：动态 SQL、多条件查询与批量操作 ============ -->
+
+    <!-- 步骤 3.1 多条件模糊查询：<where> 自动剔除开头多余的 AND -->
+    <select id="selectByCondition" parameterType="Emp" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp
+        <where>
+            <if test="empName != null and empName != ''">
+                AND emp_name LIKE CONCAT('%', #{empName}, '%')
+            </if>
+            <if test="gender != null and gender != ''">
+                AND gender = #{gender}
+            </if>
+            <if test="dept != null and dept != ''">
+                AND dept = #{dept}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY emp_id
+    </select>
+
+    <!-- 用 <trim> 实现与 <where> 等效的逻辑（体会两者差异） -->
+    <select id="selectByConditionTrim" parameterType="Emp" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="empName != null and empName != ''">
+                AND emp_name LIKE CONCAT('%', #{empName}, '%')
+            </if>
+            <if test="dept != null and dept != ''">
+                AND dept = #{dept}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </trim>
+        ORDER BY emp_id
+    </select>
+
+    <!-- 步骤 3.2 动态更新：<set> 自动剔除末尾多余的逗号 -->
+    <update id="updateDynamic" parameterType="Emp">
+        UPDATE emp
+        <set>
+            <if test="empName != null">emp_name = #{empName},</if>
+            <if test="gender  != null">gender   = #{gender},</if>
+            <if test="dept    != null">dept     = #{dept},</if>
+            <if test="post    != null">post     = #{post},</if>
+            <if test="salary  != null">salary   = #{salary},</if>
+            <if test="status  != null">status   = #{status},</if>
+        </set>
+        WHERE emp_id = #{empId}
+    </update>
+
+    <!-- 步骤 3.3 批量删除：foreach 拼 IN 列表 -->
+    <delete id="deleteBatch">
+        DELETE FROM emp WHERE emp_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 步骤 3.3 批量插入：foreach 拼 VALUES 多行 -->
+    <insert id="insertBatch">
+        INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES
+        <foreach collection="list" item="e" separator=",">
+            (#{e.empName}, #{e.gender}, #{e.dept}, #{e.post}, #{e.salary}, #{e.hireDate}, #{e.status})
+        </foreach>
+    </insert>
+
+    <!-- 步骤 3.4 分支选择：优先姓名精确查询 -> 否则按部门 -> 否则查全部 -->
+    <select id="selectByChoose" parameterType="Emp" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp
+        <where>
+            <choose>
+                <when test="empName != null and empName != ''">
+                    AND emp_name = #{empName}
+                </when>
+                <when test="dept != null and dept != ''">
+                    AND dept = #{dept}
+                </when>
+                <otherwise>
+                    AND status = 1
+                </otherwise>
+            </choose>
+        </where>
+        ORDER BY emp_id
+    </select>
+
+</mapper>

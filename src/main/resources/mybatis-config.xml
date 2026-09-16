@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--
+    MyBatis 全局配置文件（实验一 步骤 2.1 / 步骤 4.1）
+    说明：数据库连接四要素放在 jdbc.properties（已被 .gitignore 排除），
+         此处仅做占位引用，避免硬编码账号口令。
+-->
+<configuration>
+
+    <!-- 外部化配置：读取 classpath 下的 jdbc.properties -->
+    <properties resource="jdbc.properties"/>
+
+    <settings>
+        <!-- 开启驼峰命名自动映射：emp_name -> empName -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 指定日志实现为 LOG4J -->
+        <setting name="logImpl" value="LOG4J"/>
+        <!-- 查询结果为 null 的字段也调用 setter，便于观察映射是否生效 -->
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!-- 为实体类所在包取别名，映射文件中可直接写 Emp -->
+        <package name="com.lab.entity"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- 包扫描：同一包路径下的接口与同名 XML 映射文件都会被注册 -->
+        <package name="com.lab.mapper"/>
+    </mappers>
+
+</configuration>

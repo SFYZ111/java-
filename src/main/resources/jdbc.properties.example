@@ -1,0 +1,17 @@
+# =============================================================
+# 数据库连接配置模板
+# -------------------------------------------------------------
+# 使用方式：把本文件复制为同目录下的 jdbc.properties 并填入本机账号口令。
+#   copy jdbc.properties.example jdbc.properties      (Windows)
+#   cp   jdbc.properties.example jdbc.properties      (macOS / Linux)
+#
+# 【为什么要有这个模板】
+# 指导书「实验守则」明确要求：严禁在代码中硬编码真实账号口令。
+# 因此 jdbc.properties 已被 .gitignore 排除，不会随仓库发布；
+# 只提交本模板，他人克隆后自行填写即可。
+# =============================================================
+
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/ssm_emp?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true
+jdbc.username=root
+jdbc.password=请填写本机 MySQL 密码
