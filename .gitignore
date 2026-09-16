@@ -1,0 +1,25 @@
+# ---------- Java / Maven ----------
+target/
+*.class
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+
+# ---------- IDE ----------
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+# ---------- OS ----------
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ---------- 敏感信息：数据库连接四要素不入库 ----------
+# （指导书实验守则：严禁在代码中硬编码真实账号口令）
+src/main/resources/jdbc.properties

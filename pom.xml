@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lab</groupId>
+    <artifactId>mybatis-lab</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>mybatis-lab</name>
+    <description>《JAVA框架技术(一)》实验一：AI 赋能 MyBatis 与 MyBatis-Plus 环境搭建及 CRUD 实操</description>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mybatis.version>3.5.13</mybatis.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <spring.version>5.3.31</spring.version>
+    </properties>
+
+    <dependencies>
+        <!-- MyBatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+
+        <!-- MyBatis-Plus（步骤 4.1：MP 内置 MyBatis 核心，与上面 mybatis 3.5.13 版本一致，无冲突） -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+
+        <!--
+            spring-core：MyBatis-Plus 的隐性依赖（不显式引入会报 NoClassDefFoundError）
+            现象：不在 Spring 容器中使用 MP（只引 com.baomidou:mybatis-plus）时，
+                  调用 BaseMapper 方法会抛
+                  NoClassDefFoundError: org/springframework/core/GenericTypeResolver。
+            原因：mybatis-plus-core 中的
+                  com.baomidou.mybatisplus.core.toolkit.reflect.SpringReflectionHelper
+                  会调用 org.springframework.core.GenericTypeResolver 解析
+                  BaseMapper<T> 的泛型实参（用于推导实体类型）；
+                  而 artifact mybatis-plus 并未传递引入 spring-core。
+            结论：显式引入 spring-core 即可。版本与课程实验二的 Spring 5.3.x 保持一致。
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- MySQL 驱动 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+
+        <!-- Log4j：SQL 日志 -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+        <!-- JUnit 4 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
